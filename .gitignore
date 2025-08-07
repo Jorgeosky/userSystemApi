@@ -1,0 +1,38 @@
+# Entorno virtual
+venv/
+ENV/
+env/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Archivos de configuración y base de datos
+*.sqlite3
+db.sqlite3
+
+# Archivos de logs
+*.log
+
+# Archivos de migraciones
+*/migrations/*.pyc
+*/migrations/__pycache__/
+# Opcional: si quieres ignorar migraciones generadas, agrega:
+# */migrations/*.py
+
+# Archivos de configuración local
+*.env
+.env.*
+
+# Archivos de usuario/editor
+.vscode/
+.idea/
+*.swp
+
+# Archivos estáticos generados
+staticfiles/
+media/
+
+# Otros
+.DS_Store

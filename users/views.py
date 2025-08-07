@@ -67,11 +67,15 @@ class UserViewSet(viewsets.ModelViewSet):
             raise serializers.ValidationError("Invalid role.")
         serializer.save()
 
-    def partial_update(self, serializer):
+    def partial_update(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
         if not self.request.user.is_authenticated:
             raise PermissionDenied("No estás autenticado.")
-
-        data = serializer.validated_data
+        user = self.get_object()
+        serializer = self.get_serializer(user, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
         
         # Solo validamos el rol si está presente en los datos de la solicitud
         role = data.get('role', None)
